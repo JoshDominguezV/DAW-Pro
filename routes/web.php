@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\InventarioController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function () {
+    return view('proyLayout/home');
 });
+/*ENTRADAS Y SALIDAS*/
+Route::get('/entrada/create', 'EntradaController@create')->name('entrada.create');
+Route::post('/entrada', 'EntradaController@store')->name('entrada.store');
+Route::get('/salida/create', 'SalidaController@create')->name('salida.create');
+Route::post('/salida', 'SalidaController@store')->name('salida.store');
+/*DATOS DEL INVENTARIO*/
+Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');

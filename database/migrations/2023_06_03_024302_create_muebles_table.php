@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('idMarca')->references('idMarca')->on('marca');
             $table->integer('idTipoMueble')->unsigned();
             $table->foreign('idTipoMueble')->references('idTipoMueble')->on('tipomueble');
+            $table->string('nombreMueble', 100);
             $table->float('precio', 4, 2);
             $table->timestamps();
         });

@@ -28,5 +28,16 @@ class Muebles extends Seeder
             'nombreMueble' => 'Comedor',
             'precio' => 9.99,
         ]);
+
+        
     }
+    public function usuario()
+{
+    return $this->belongsTo(Usuario::class, 'idUsuario');
+}
+
+public function rol()
+{
+    return $this->belongsTo(Rol::class, 'idRol');
+}
 }

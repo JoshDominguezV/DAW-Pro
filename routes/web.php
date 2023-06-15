@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\EntradaController;
+use App\Http\Controllers\SalidaController;
+use App\Http\Controllers\AdmEntradas;
 
 
 /*
@@ -15,14 +18,28 @@ use App\Http\Controllers\InventarioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/home', function () {
-    return view('proyLayout/home');
+/*PAGINA PARA ADMINISTRADOR*/
+Route::get('/adm_home', function () {
+    return view('administrador/proyLayout/home');
+});
+/*DATOS DEL INVENTARIO ADMINISTRADOR*/
+Route::get('/inventario',   [InventarioController::class, 'index'])->name('administrador.inventario.index');
+Route::get('entrada/create', [AdmEntradas::class, 'create'])->name('entrada.create');
+Route::post('entrada', [AdmEntradas::class, 'store'])->name('entrada.store');
+Route::resource('entrada', AdmEntradas::class);
+/*PAGINA PARA INVITADOS*/
+Route::get('/inv_home', function () {
+    return view('invitados/proyLayout/home');
 });
 /*ENTRADAS Y SALIDAS*/
-Route::get('/entrada/create', 'EntradaController@create')->name('entrada.create');
-Route::post('/entrada', 'EntradaController@store')->name('entrada.store');
-Route::get('/salida/create', 'SalidaController@create')->name('salida.create');
-Route::post('/salida', 'SalidaController@store')->name('salida.store');
-/*DATOS DEL INVENTARIO*/
-Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
+Route::resource('entradas', EntradaController::class);
+
+
+
+
+
+
+/*PRUEBA DE ENRUTAMIENTOS */
+Route::get('/p', function () {
+    return view('invitados/bodega/entradas/index');
+});

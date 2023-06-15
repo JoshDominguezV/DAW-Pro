@@ -29,7 +29,7 @@ class InventarioController extends Controller
         $proveedor = Proveedor::all();
         $tipomueble = TipoMueble::all();
 
-        return view('inventario.index', compact('bodega', 'categoria', 'marca', 'mueble', 'pago', 'proveedor','tipomueble' ));
+        return view('administrador.inventario.index', compact('bodega', 'categoria', 'marca', 'mueble', 'pago', 'proveedor','tipomueble' ));
     }
 
     /**
@@ -39,7 +39,7 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        //
+        //  
     }
 
     /**

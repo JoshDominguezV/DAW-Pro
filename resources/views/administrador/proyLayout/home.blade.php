@@ -121,7 +121,7 @@
                 <div class="cards">
                     <div class="card blue">
                         <div>
-                            <a href="{{ route('inventario.index') }}">INVENTARIO</a>
+                            <a href="{{ route('administrador.inventario.index') }}">INVENTARIO</a>
                         </div> 
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="cards">
                     <div class="card purple">
                         <div>
-                            <a href="#">ENTRADAS/SALIDAS</a>
+                            <a href="{{ route('entrada.index') }}">ENTRADAS/SALIDAS</a>
                         </div> 
                     </div>
                 </div>

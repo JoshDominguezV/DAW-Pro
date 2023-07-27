@@ -16,11 +16,15 @@ class Roles extends Seeder
     public function run()
     {
         //
-        DB::table('rol')->insert([
-            'rol' => 'Administrador',
-            'rol' => 'Empleado',
-            'rol' => 'Gerente',
-        ]);
+
+        $roles = [
+            ['rol' => 'Admin'],
+            ['rol' => 'Empleado'],
+            [ 'rol' => 'Invitado'],
+        ];
+
+        DB::table('rol')->insert($roles);
 
     }
+    
 }

@@ -55,11 +55,3 @@ CREATE TABLE bodega (
   cantidadMuebles INT(11),
   FOREIGN KEY (idMueble) REFERENCES mueble(idMueble)
 );
---TABLA PAGO--
-CREATE TABLE pago (
-  idPago INT(11) PRIMARY KEY,
-  idBodega INT(11),
-  tipoPago VARCHAR(25),
-  fechaPago DATETIME,
-  FOREIGN KEY (idBodega) REFERENCES bodega(idBodega)
-);

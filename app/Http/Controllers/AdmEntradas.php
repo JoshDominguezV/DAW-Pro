@@ -7,10 +7,8 @@ use App\Models\Bodega;
 use App\Models\Marca;
 use App\Models\Proveedor;
 use App\Models\Mueble;
-use App\Models\Pago;
 use App\Models\TipoMueble;
 use App\Models\Rol;
-use App\Models\Usuario;
 
 
 use Illuminate\Http\Request;
@@ -40,16 +38,14 @@ class AdmEntradas extends Controller
     public function index()
 {
     $rol = Rol::get();
-    $usuario = Usuario::get();
     $bodega = Bodega::get();
     $categoria = Categoria::get();
     $marca = Marca::get();
     $mueble = Mueble::get();
-    $pago = Pago::get();
     $proveedor = Proveedor::get();
     $tipomueble = TipoMueble::get();
 
-    return view('administrador.bodega.entradas.index', compact('rol', 'usuario', 'bodega', 'categoria', 'marca', 'mueble', 'pago', 'proveedor', 'tipomueble'));
+    return view('administrador.bodega.entradas.index', compact('rol', 'bodega', 'categoria', 'marca', 'mueble',  'proveedor', 'tipomueble'));
 }
 
     /**
@@ -61,16 +57,14 @@ class AdmEntradas extends Controller
     {
         //
         $rol = Rol::all();
-        $usuario = Usuario::all();
         $bodega = Bodega::all();
         $categoria = Categoria::all();
         $marca = Marca::all();
         $mueble = Mueble::all();
-        $pago = Pago::all();
         $proveedor = Proveedor::all();
         $tipomueble = TipoMueble::all();
         
-        return view('administrador.bodega.entradas.create', compact('rol', 'proveedor', 'usuario', 'tipomueble', 'marca', 'categoria'));
+        return view('administrador.bodega.entradas.create', compact('rol', 'proveedor', 'tipomueble', 'marca', 'categoria'));
     }
 
     /**
@@ -164,22 +158,7 @@ class AdmEntradas extends Controller
         // Obtener el ID del proveedor recién creado (si existe)
         $idProveedor = isset($proveedor) ? $proveedor->idProveedor : null;
     
-        // Crear un nuevo usuario solo si se proporciona la información
-        if ($request->idRol || $request->username || $request->password) {
-            if ($request->username) {
-                $usuario = new Usuario;
-                $usuario->idRol = $request->idRol;
-                $usuario->username = $request->username;
-                $usuario->password = $request->password;
-                $usuario->save();
-    
-                $idUsuario = $usuario->idUsuario;
-            } else {
-                return redirect()->back()->withErrors(['username' => 'El campo de usuario es obligatorio.'])->withInput();
-            }
-        } else {
-            $idUsuario = null;
-        }
+        // Crear un nuevo usuario solo si se proporciona la informació
     
         // Crear un nuevo tipo de mueble solo si se proporciona el nombre del mueble
         if ($request->nombreMueble) {
@@ -202,13 +181,6 @@ class AdmEntradas extends Controller
         // Obtener el ID de la marca recién creada (si existe)
         $idMarca = isset($marca) ? $marca->idMarca : null;
     
-        // Crear una nueva categoría solo si se proporciona la información
-        if ($request->idUsuario || $request->nombreCategoria) {
-            $categoria = new Categoria;
-            $categoria->idUsuario = $request->idUsuario;
-            $categoria->nombreCategoria = $request->nombreCategoria;
-            $categoria->save();
-        }
     
         // Obtener el ID de la categoría recién creada (si existe)
         $idCategoria = isset($categoria) ? $categoria->idCategoria : null;

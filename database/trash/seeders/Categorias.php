@@ -16,13 +16,8 @@ class Categorias extends Seeder
      */
     public function run()
     {
-        
-        /**HACER UN CAMBIO SEGUN TABLA DE JOSUE - LOGIN */
-        
-        $usuario = DB::table('usuario')->first();
 
         DB::table('categoria')->insert([
-            'idUsuario' => $usuario->idUsuario,
             'nombreCategoria' => 'Categoría 1',
        
         ]);

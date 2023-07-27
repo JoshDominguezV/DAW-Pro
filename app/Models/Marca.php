@@ -11,22 +11,11 @@ class Marca extends Model
 {
     use HasFactory;
 
-    protected $table = 'marca';
-    protected $primaryKey = 'idMarca';
+    protected $table = 'marcas';
+    protected $primaryKey = 'id';
     public $timestamps = true;
 
     protected $fillable = [
-        'idProveedor',
-        'nombreMarca',
+        'nombre',
     ];
-
-    public function proveedor()
-    {
-        return $this->belongsTo(Proveedor::class, 'idProveedor', 'idProveedor');
-    }
-
-    public function muebles()
-    {
-        return $this->hasMany(Mueble::class, 'idMarca', 'idMarca');
-    }
 }

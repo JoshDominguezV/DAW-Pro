@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class RolUser extends Seeder
+class Roles extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,5 +16,15 @@ class RolUser extends Seeder
     public function run()
     {
         //
+
+        $roles = [
+            ['rol' => 'Admin'],
+            ['rol' => 'Empleado'],
+            [ 'rol' => 'Invitado'],
+        ];
+
+        DB::table('rol')->insert($roles);
+
     }
+    
 }

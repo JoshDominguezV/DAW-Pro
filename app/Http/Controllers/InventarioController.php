@@ -6,7 +6,6 @@ use App\Models\Bodega;
 use App\Models\Marca;
 use App\Models\Proveedor;
 use App\Models\Mueble;
-use App\Models\Pago;
 use App\Models\TipoMueble;
 
 use Illuminate\Http\Request;
@@ -25,11 +24,10 @@ class InventarioController extends Controller
         $categoria = Categoria::all();
         $marca = Marca::all();
         $mueble = Mueble::all();
-        $pago = Pago::all();
         $proveedor = Proveedor::all();
         $tipomueble = TipoMueble::all();
 
-        return view('administrador.inventario.index', compact('bodega', 'categoria', 'marca', 'mueble', 'pago', 'proveedor','tipomueble' ));
+        return view('administrador.inventario.index', compact('bodega', 'categoria', 'marca', 'mueble', 'proveedor','tipomueble' ));
     }
 
     /**

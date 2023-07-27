@@ -4,29 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Mueble;
-use App\Models\Pago;
 
 class Bodega extends Model
 {
     use HasFactory;
 
-    protected $table = 'bodega';
-    protected $primaryKey = 'idBodega';
-    public $timestamps = true;
+    protected $table = 'bodegas';
+    protected $primaryKey = 'id';
+    protected $fillable = ['nombre'];
 
-    protected $fillable = [
-        'idMueble',
-        'cantidadMuebles',
-    ];
-
-    public function mueble()
+    public function productos()
     {
-        return $this->belongsTo(Mueble::class, 'idMueble', 'idMueble');
-    }
-
-    public function pagos()
-    {
-        return $this->hasMany(Pago::class, 'idBodega', 'idBodega');
+        return $this->belongsToMany(Producto::class, 'producto_bodega', 'bodega_id', 'producto_id')
+            ->withPivot('cantidad');
     }
 }
